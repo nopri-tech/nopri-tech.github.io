@@ -1,0 +1,479 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transition: background-color 0.6s ease;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* ── white page background ───────────────────────────────────────────────── */
+
+#page-bg {
+    position: fixed;
+    top: 12px;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    background: #fff;
+    border-radius: 30px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ── overlay ─────────────────────────────────────────────────────────────── */
+
+#ui {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+
+/* ── bookmarks ───────────────────────────────────────────────────────────── */
+
+#bookmarks {
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    pointer-events: all;
+    z-index: 100;
+    opacity: 0;
+    animation: nopri-fade-in 0.4s ease 3300ms forwards;
+}
+
+.bookmark {
+    width: 28px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+    height: var(--bh, 76px);
+    transition: height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bookmark:hover {
+    height: calc(var(--bh, 76px) + 10px);
+}
+
+.bookmark--red    { background: #dc5757; }
+.bookmark--yellow { background: #f3ce6a; }
+.bookmark--blue   { background: #7096ca; }
+
+/* ── center block ────────────────────────────────────────────────────────── */
+
+#center-block {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 52px);
+    pointer-events: none;
+    padding-bottom: 40px;
+}
+
+/* ── nopri logo ──────────────────────────────────────────────────────────── */
+
+#nopri-logo {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    animation:
+        nopri-fade-in 0.6s ease 3100ms forwards,
+        logo-spin 12s linear 3100ms infinite;
+}
+
+@keyframes logo-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── nopri title ─────────────────────────────────────────────────────────── */
+
+#nopri-wrap {
+    position: relative;
+}
+
+#nopri-shadow {
+    position: absolute;
+    height: clamp(60px, 14vw, 130px);
+    width: auto;
+    opacity: 0;
+    pointer-events: none;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#nopri-reveal {
+    display: block;
+    height: clamp(60px, 14vw, 130px);
+    width: auto;
+    transform-origin: 50% 50%;
+    overflow: visible;
+    position: relative;
+}
+
+/* ── view wrapper ────────────────────────────────────────────────────────── */
+
+#view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* ── subheader ───────────────────────────────────────────────────────────── */
+
+#subheader {
+    text-align: center;
+    font-family: "Arial Rounded MT Bold", "Arial Rounded MT", sans-serif;
+    font-size: calc(clamp(60px, 14vw, 130px) * 0.261);
+    color: #111;
+    opacity: 0;
+    animation: nopri-fade-in 0.6s ease 3200ms forwards;
+}
+
+@keyframes nopri-fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ── view label ──────────────────────────────────────────────────────────── */
+
+#view-label {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.65;
+    max-width: min(460px, 80vw);
+    margin-top: clamp(20px, 5vw, 52px);
+    margin-bottom: clamp(20px, 5vw, 52px);
+    display: none;
+}
+
+/* ── capsule row ─────────────────────────────────────────────────────────── */
+
+#capsules {
+    margin-top: clamp(20px, 5vw, 52px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 24px;
+    width: min(780px, calc(100vw - 80px));
+    min-height: 160px;
+    pointer-events: none;
+}
+
+
+/* ── capsule pill ────────────────────────────────────────────────────────── */
+
+.cap {
+    pointer-events: all;
+    font-family: "Arial Rounded MT Bold", "Arial Rounded MT", sans-serif;
+    font-size: max(1.5vw, 11px);
+    color: #555;
+    background: #ebebeb;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    padding: 10px 14px;
+    cursor: pointer;
+    outline: none;
+    transform: scale(0);
+    transition:
+        padding 0.22s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* staggered pop-in */
+.cap:nth-child(1) {
+    animation: cap-pop-in 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 3580ms both;
+}
+.cap:nth-child(2) {
+    animation: cap-pop-in 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 3690ms both;
+}
+.cap:nth-child(3) {
+    animation: cap-pop-in 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 3800ms both;
+}
+.cap:nth-child(4) {
+    animation: cap-pop-in 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 3910ms both;
+}
+.cap:nth-child(5) {
+    animation: cap-pop-in 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 4020ms both;
+}
+
+@keyframes cap-pop-in {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.cap:hover {
+    padding-inline: 20px;
+    background: #fff;
+    border-color: #111;
+}
+
+/* ── wide info capsule ───────────────────────────────────────────────────── */
+
+.cap--wide {
+    border-radius: 20px;
+    white-space: normal;
+    max-width: min(480px, 80vw);
+    line-height: 1.6;
+    text-align: center;
+    pointer-events: none;
+    cursor: default;
+}
+
+.cap--wide:hover {
+    padding-inline: 14px;
+    background: #ebebeb;
+    border-color: transparent;
+}
+
+.cap--left {
+    text-align: left;
+}
+
+
+/* ── contact pill ────────────────────────────────────────────────────────── */
+
+.cap--contact {
+    background: #111;
+    color: #fff;
+}
+
+.cap-arrow {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.cap-arrow::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.22s ease;
+}
+
+.cap-arrow::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid currentColor;
+    margin-left: 1px;
+}
+
+.cap--contact:hover {
+    padding-inline: 14px;
+    background: #333;
+    border-color: transparent;
+}
+
+.cap--contact:hover .cap-arrow::before {
+    width: 12px;
+}
+
+/* ── footer bar ──────────────────────────────────────────────────────────── */
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: all;
+    opacity: 0;
+    animation: footer-fade-in 0.5s ease 4400ms forwards;
+    transition: background-color 0.4s ease;
+    z-index: 150;
+}
+
+@keyframes footer-fade-in {
+    to { opacity: 0.75; }
+}
+
+#footer-copy {
+    font-family: "Arial Rounded MT Bold", "Arial Rounded MT", sans-serif;
+    font-size: 13px;
+    color: #fff;
+}
+
+#footer-nav {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-link {
+    font-family: "Arial Rounded MT Bold", "Arial Rounded MT", sans-serif;
+    font-size: 13px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.15s ease;
+}
+
+.footer-link:hover {
+    opacity: 0.7;
+}
+
+/* ── expanding circles ───────────────────────────────────────────────────── */
+
+.ring {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.ring.go {
+    animation: ring-expand 700ms cubic-bezier(0.2, 0, 0.8, 1) both;
+}
+
+.ring-1 {
+    background: #e63946;
+}
+.ring-2 {
+    background: #4a90d9;
+}
+.ring-3 {
+    background: #f4c430;
+}
+.ring-4 {
+    background: #fff;
+}
+
+.ring-2.go {
+    animation-delay: 220ms;
+}
+.ring-3.go {
+    animation-delay: 440ms;
+}
+.ring-4.go {
+    animation-delay: 660ms;
+}
+
+@keyframes ring-expand {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(50);
+        opacity: 0;
+    }
+}
+
+/* ── responsive ──────────────────────────────────────────────────────────── */
+
+/* mobile layout */
+@media (max-width: 480px) {
+    #nopri-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    #nopri-shadow,
+    #nopri-reveal {
+        height: clamp(72px, 18vw, 100px);
+    }
+
+    #center-block {
+        gap: clamp(16px, 4.5vw, 30px);
+    }
+
+    #subheader {
+        padding: 0 20px;
+        font-size: 15px;
+    }
+
+    #capsules {
+        gap: 9px;
+        margin-top: clamp(16px, 4.5vw, 30px);
+        min-height: 180px;
+        width: calc(100vw - 32px);
+    }
+
+    .cap {
+        font-size: 13px;
+        padding: 9px 14px;
+    }
+
+}
+
+/* landscape mobile / short viewports — hide logo, tighten gaps */
+@media (max-height: 480px) {
+    #nopri-logo {
+        display: none;
+    }
+
+    #center-block {
+        gap: 8px;
+    }
+
+    #nopri-shadow,
+    #nopri-reveal {
+        height: clamp(44px, 11vh, 90px);
+    }
+
+    #capsules {
+        margin-top: 10px;
+        gap: 6px;
+    }
+}
+
+/* touch: skip hover effects on tap */
+@media (hover: none) {
+    .cap:hover {
+        padding-inline: 14px;
+    }
+
+    .cap--contact:hover .cap-arrow::before {
+        width: 0;
+    }
+}
