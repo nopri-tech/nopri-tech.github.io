@@ -96,6 +96,7 @@ function switchView(name) {
   document.documentElement.style.setProperty("--page-color", color);
   document.documentElement.style.backgroundColor = color;
   document.getElementById("footer").style.backgroundColor = color;
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", color);
 }
 
 document.addEventListener("click", (e) => {
@@ -185,6 +186,7 @@ document.fonts.ready.then(() => {
   const total = lengths.reduce((a, b) => a + b, 0);
 
   let delay = 0;
+  let lastStrokeAnim;
   paths.forEach((path, i) => {
     const len = lengths[i];
     const dur = (len / total) * STROKE_DUR;
@@ -192,7 +194,7 @@ document.fonts.ready.then(() => {
     path.style.strokeDasharray = len;
     path.style.strokeDashoffset = len;
 
-    path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], {
+    lastStrokeAnim = path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], {
       duration: dur,
       delay,
       fill: "forwards",
@@ -211,8 +213,8 @@ document.fonts.ready.then(() => {
       fill: "forwards",
     });
 
-  // rise/slam after strokes finish
-  setTimeout(() => {
+  // rise/slam after strokes finish — tied to animation timeline, not setTimeout
+  lastStrokeAnim.finished.then(() => {
     const svg = document.getElementById("nopri-reveal");
     const shadow = document.getElementById("nopri-shadow");
 
@@ -244,5 +246,5 @@ document.fonts.ready.then(() => {
         fill: "forwards",
       });
     });
-  }, STROKE_DUR);
+  });
 });
