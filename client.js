@@ -101,7 +101,7 @@ function switchView(name) {
 
 document.addEventListener("click", (e) => {
   if (e.target.closest(".cap--contact")) {
-    window.location.href = "mailto:nopritech@gmail.com";
+    window.location.href = "mailto:support@nopri.co";
   }
 });
 
