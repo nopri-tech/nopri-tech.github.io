@@ -350,6 +350,11 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
+    /* The row is buttons except the Privacy link, which has to be a real
+       anchor so it can be opened, copied, and linked to from the App
+       Store listing. */
+    text-decoration: none;
+    line-height: 1;
     transition: opacity 0.15s ease;
 }
 
