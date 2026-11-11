@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Duodoku</title>
+
+        <meta
+            name="description"
+            content="Duodoku is sudoku with a colorful twist. Solve the numbers, fit the color tiles, then merge the two grids. For iPhone."
+        />
+        <meta name="theme-color" content="#6194eb" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.nopri.co/duodoku" />
+        <meta property="og:title" content="Duodoku" />
+        <meta
+            property="og:description"
+            content="Sudoku with a colorful twist. Solve the numbers, fit the color tiles, then merge the two grids."
+        />
+        <meta property="og:image" content="https://www.nopri.co/duodoku/icon.png" />
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="stylesheet" href="/legal.css" />
+        <style>
+            :root {
+                --accent: #6194eb;
+            }
+
+            .hero {
+                text-align: center;
+                margin-bottom: 36px;
+            }
+
+            .hero img {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 12px;
+            }
+
+            .hero .lede {
+                max-width: 480px;
+                margin: 0 auto 24px;
+            }
+
+            .store {
+                display: inline-block;
+                font-family: var(--rounded);
+                font-size: 18px;
+                color: #fff;
+                background: var(--ink);
+                text-decoration: none;
+                padding: 12px 30px;
+                transform: skewX(-12deg);
+                box-shadow: 0 6px 0 #000;
+            }
+
+            .store span {
+                display: inline-block;
+                transform: skewX(12deg);
+            }
+
+            .store:hover {
+                opacity: 0.85;
+            }
+
+            .shots {
+                display: flex;
+                gap: 18px;
+                justify-content: center;
+                margin: 8px 0 30px;
+            }
+
+            .shots figure {
+                flex: 1;
+                min-width: 0;
+                max-width: 260px;
+                text-align: center;
+            }
+
+            .shots img {
+                width: 100%;
+                border-radius: 26px;
+                border: 4px solid var(--ink);
+                box-shadow: 0 8px 0 var(--ink);
+                display: block;
+            }
+
+            .shots figcaption {
+                font-family: var(--rounded);
+                font-size: 14px;
+                color: var(--muted);
+                margin-top: 16px;
+            }
+
+            .links {
+                margin-top: 30px;
+                font-family: var(--rounded);
+                font-size: 15px;
+            }
+
+            .links a {
+                margin-right: 18px;
+                text-decoration: none;
+            }
+
+            @media (max-width: 600px) {
+                .hero img {
+                    width: 140px;
+                    height: 140px;
+                }
+
+                .shots {
+                    gap: 12px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page">
+            <a class="home" href="/">&larr; nopri</a>
+
+            <div class="hero">
+                <img src="/duodoku/icon.png" alt="Duodoku app icon" />
+                <h1>Duodoku</h1>
+                <p class="lede">
+                    Sudoku with a colorful twist. Solve the numbers, fit the color
+                    tiles, then merge the two grids.
+                </p>
+                <a class="store" href="https://apps.apple.com/app/id6827596593">
+                    <span>Get it on the App Store</span>
+                </a>
+            </div>
+
+            <div class="shots">
+                <figure>
+                    <img src="/duodoku/numbers.jpg" alt="The number grid, a sudoku" />
+                    <figcaption>Part 1: the numbers</figcaption>
+                </figure>
+                <figure>
+                    <img src="/duodoku/colors.jpg" alt="The color grid, with tiles to place" />
+                    <figcaption>Part 2: the colors</figcaption>
+                </figure>
+            </div>
+
+            <h2>How it works</h2>
+            <p>
+                Every puzzle comes in two halves. On the left, a sudoku. On the right,
+                a set of color tiles to fit together. Each color has to land on one of
+                every number, so the two halves give each other clues.
+            </p>
+            <p>
+                When both are filled, merge them. On a foldable iPhone, just close
+                it.
+            </p>
+
+            <h2>What's inside</h2>
+            <ul>
+                <li>81 levels that grow from 3×3 all the way to 9×9</li>
+                <li>Arcade mode with endless puzzles, three difficulties, and Game Center leaderboards</li>
+                <li>A pencil for notes, a calming color theme, and progress that syncs through iCloud</li>
+                <li>No ads, no in-app purchases</li>
+            </ul>
+
+            <p class="links">
+                <a href="/support/duodoku">Support</a>
+                <a href="/privacy/duodoku">Privacy</a>
+                <a href="/terms/duodoku">Terms</a>
+            </p>
+        </main>
+
+        <footer>&copy; 2026 Nopri LLC</footer>
+    </body>
+</html>
